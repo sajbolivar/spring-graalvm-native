@@ -1,0 +1,37 @@
+{
+    "name": "Spring Boot Dev Environment",
+    
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vmware.vscode-spring-boot",
+                "vscjava.vscode-spring-boot-dashboard",
+                "vscjava.vscode-java-pack",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                "docker.dockerPath": "podman"
+            }
+        }
+    },
+
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "25",
+            "jdkDistro": "ms"
+        }
+    },
+
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt", "seccomp=unconfined",
+        "--security-opt", "label=disable",
+        "--userns=keep-id",
+        "--mount", "type=tmpfs,destination=/tmp,tmpfs-mode=1777"
+    ],
+
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": false
+}
